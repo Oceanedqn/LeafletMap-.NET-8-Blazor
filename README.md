@@ -18,6 +18,10 @@ Add the page rendering mode below the @page tag in .razor file, otherwise, the p
 ## Problems encountered :
 * At the moment "edge" doesn't always display the correct location, whereas "firefox" does. I think the problem comes from the vpn or the browser settings.
 
+## Site overview
+![image](https://github.com/Oceanedqn/LeafletMap-.NET-8-Blazor/assets/33551018/4cd4f577-2598-4103-89e5-d5f3cc346a17)
+
+
 ## Documentation used
 * Leaflet : https://leafletjs.com/
 * Render mode : https://learn.microsoft.com/en-us/aspnet/core/blazor/components/render-modes?view=aspnetcore-8.0

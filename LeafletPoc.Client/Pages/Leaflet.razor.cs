@@ -3,25 +3,43 @@ using Microsoft.JSInterop;
 
 namespace LeafletPoc.Client.Pages
 {
-    public partial class Leaflet : ComponentBase, IAsyncDisposable
+    public partial class Leaflet : ComponentBase
     {
         [Inject] IJSRuntime JSRuntime { get; set; } = default!;
-        private IJSObjectReference? module;
         private string? result;
+        private string? locationMessage;
+        private Position _location = new Position { Latitude = 0, Longitude = 0 };
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
             {
-                result = await JSRuntime.InvokeAsync<string>("loadMap");
+                await RequestLocationPermission();
+                Console.WriteLine(locationMessage);
+                result = await JSRuntime.InvokeAsync<string>("loadMap", _location.Latitude, _location.Longitude);
             }
         }
-        async ValueTask IAsyncDisposable.DisposeAsync()
+
+
+        private async Task RequestLocationPermission()
         {
-            if (module is not null)
+            try
             {
-                await module.DisposeAsync();
+                _location = await JSRuntime.InvokeAsync<Position>("requestLocationPermission");
+                locationMessage = $"Latitude: {_location.Latitude}, Longitude: {_location.Longitude}";
+            }
+            catch (Exception ex)
+            {
+                locationMessage = $"Erreur lors de la récupération de la position : {ex.Message}";
             }
         }
+
+
+    }
+
+    public class Position
+    {
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
     }
 }

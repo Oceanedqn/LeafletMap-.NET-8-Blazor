@@ -1,5 +1,6 @@
 using LeafletPoc.Client.Pages;
 using LeafletPoc.Components;
+using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddMudServices();
+builder.Services.AddLocalization();
 
 var app = builder.Build();
 

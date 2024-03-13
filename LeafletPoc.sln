@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeafletPoc", "LeafletPoc\LeafletPoc.csproj", "{3D96D9DB-C4D8-4E5D-B8C8-F5A1761747E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeafletPoc", "LeafletPoc\LeafletPoc.csproj", "{3D96D9DB-C4D8-4E5D-B8C8-F5A1761747E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeafletPoc.Client", "LeafletPoc.Client\LeafletPoc.Client.csproj", "{319C7D25-F2E7-4D9B-997D-F9A7AE0B9048}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeafletPoc.Client", "LeafletPoc.Client\LeafletPoc.Client.csproj", "{319C7D25-F2E7-4D9B-997D-F9A7AE0B9048}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

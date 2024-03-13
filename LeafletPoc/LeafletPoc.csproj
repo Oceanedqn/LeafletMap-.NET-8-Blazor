@@ -7,8 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\LeafletPoc.Client\Theme\LeafletTheme.razor.cs" Link="LeafletTheme.razor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LeafletPoc.Client\LeafletPoc.Client.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.0" />
+    <PackageReference Include="MudBlazor" Version="6.17.0" />
   </ItemGroup>
 
 </Project>

@@ -6,8 +6,8 @@ namespace LeafletPoc.Client.Pages
     public partial class Leaflet : ComponentBase
     {
         [Inject] IJSRuntime JSRuntime { get; set; } = default!;
-        private string? result;
-        private string? locationMessage;
+        private string? _result;
+        private string? _locationMessage;
         private Position _location = new Position { Latitude = 0, Longitude = 0 };
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -15,8 +15,8 @@ namespace LeafletPoc.Client.Pages
             if (firstRender)
             {
                 await RequestLocationPermission();
-                Console.WriteLine(locationMessage);
-                result = await JSRuntime.InvokeAsync<string>("loadMap", _location.Latitude, _location.Longitude);
+                Console.WriteLine(_locationMessage);
+                _result = await JSRuntime.InvokeAsync<string>("loadMap", _location.Latitude, _location.Longitude);
             }
         }
 
@@ -26,15 +26,13 @@ namespace LeafletPoc.Client.Pages
             try
             {
                 _location = await JSRuntime.InvokeAsync<Position>("requestLocationPermission");
-                locationMessage = $"Latitude: {_location.Latitude}, Longitude: {_location.Longitude}";
+                _locationMessage = $"Latitude: {_location.Latitude}, Longitude: {_location.Longitude}";
             }
             catch (Exception ex)
             {
-                locationMessage = $"Erreur lors de la récupération de la position : {ex.Message}";
+                _locationMessage = $"Erreur lors de la récupération de la position : {ex.Message}";
             }
         }
-
-
     }
 
     public class Position

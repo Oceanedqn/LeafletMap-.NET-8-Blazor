@@ -1,23 +1,50 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+<MudThemeProvider Theme="_theme.UseCustomColor()" />
+<MudDialogProvider />
+<MudSnackbarProvider />
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
+<MudLayout>
+    <MudAppBar Fixed="false" Color="Color.Transparent" Elevation="1" WrapContent Class="app-bar-color">
+         <MudContainer MaxWidth="MaxWidth.Large">
+             <MudPaper Class="d-flex" Elevation="0">
+                 <MudPaper Elevation="0">
+                     <MudLink Href="/" Underline="Underline.None" Color="Color.Dark" Class="d-flex align-self-center">
+                         <MudIcon Class="pr-1" Icon="@Icons.Material.Filled.Home" Size="Size.Large" />
+                         <MudText Class="align-self-center layout-text-acceuil">@Localizer["doc"]</MudText>
+                    </MudLink>
+                </MudPaper>
+                <MudPaper Elevation="0" Class="pl-4">
+                    <MudLink Href="/map" Underline="Underline.None" Color="Color.Dark" Class="d-flex align-self-center">
+                            <MudIcon Class="pr-1" Icon="@Icons.Material.Filled.LocationOn" Size="Size.Large" />
+                        <MudText Class="align-self-center layout-text-acceuil">@Localizer["map"]</MudText>
+                    </MudLink>
+                </MudPaper>
+            </MudPaper>
+        </MudContainer>
+    </MudAppBar>
+    <MudMainContent Class="main-content-layout">
+        <MudContainer MaxWidth="MaxWidth.Large">
+            <MudGrid>
+                @Body
+            </MudGrid>
+        </MudContainer>
+    </MudMainContent>
+    <MudSpacer />
+    <MudAppBar Class="footer-custom" Color="Color.Transparent" Elevation="0">
+        <MudContainer MaxWidth="MaxWidth.Large" Class="footer-text-color">
+            © 2024 - Océane Duquenne
+        </MudContainer>
+    </MudAppBar>
+</MudLayout>
 
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
 
 <div id="blazor-error-ui">
     An unhandled error has occurred.
     <a href="" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
 </div>
+
+
+
+

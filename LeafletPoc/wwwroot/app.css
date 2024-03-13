@@ -49,3 +49,30 @@ h1:focus {
 .darker-border-checkbox.form-check-input {
     border-color: #929292;
 }
+
+/*Custom*/
+.mud-layout {
+    min-height: 100vh !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-bar-color {
+    background-color: white !important;
+}
+
+.main-content-layout {
+    padding-top: 10px;
+}
+
+.footer-custom {
+    position: relative !important;
+    width: 100%;
+    white-space: nowrap;
+    background-color: white !important;
+    border-top: 1px solid #dee2e6 !important
+}
+
+.footer-text-color {
+    color: #6c757d !important;
+}

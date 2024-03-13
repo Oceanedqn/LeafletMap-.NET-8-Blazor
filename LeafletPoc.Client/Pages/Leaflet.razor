@@ -1,9 +1,18 @@
 ﻿@page "/map"
 @rendermode InteractiveAuto
 
-<h3>Leaflet Map</h3>
-Here's a guide how to implement Leaflet on blazor in .NET 8.
-More details on my <a href="https://github.com/Oceanedqn/LeafletMap-.NET-8-Blazor/tree/master">github</a>
+
+<MudItem xs="12" Class="pt-4">
+    <MudText Typo="Typo.h3">Leaflet Map</MudText>
+    <MudText Typo="Typo.body1">Here's a guide how to implement Leaflet on blazor in .NET 8.</MudText>
+    <MudText Typo="Typo.body1">More details on my <MudLink Href="https://github.com/Oceanedqn/LeafletMap-.NET-8-Blazor/tree/master">github</MudLink></MudText>
+</MudItem>
+
+<MudItem xs="12">
+    <div id="map" style="width: 75vw; height: 70vh;"></div>
+</MudItem>
 
 
-<div id="map" style="width: 800px; height: 600px;"></div>
+
+
+

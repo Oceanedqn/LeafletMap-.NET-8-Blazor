@@ -2,7 +2,7 @@
 Welcome
 
 ## Environment used
-Here's a guide to using Leafler on blazor in .NET 8.
+Here's a guide how to implement Leaflet on blazor in .NET 8.
 On this version, I use <b>Interactive Auto</b>
 
 ![image](https://github.com/Oceanedqn/LeafletMap-.NET-8-Blazor/assets/33551018/8322dcf0-f5f5-42f8-8181-6a55153a938f)

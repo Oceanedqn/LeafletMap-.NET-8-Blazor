@@ -1,13 +1,4 @@
-﻿function loadMap(latitude, longitude) {
-    let map = L.map('map', { center: [latitude, longitude], zoom: 16 });
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
-
-    L.marker([latitude, longitude]).addTo(map)
-        .bindPopup('You are here')
-        .openPopup();
-
-    return "";
-}
+﻿let map;
 
 window.requestLocationPermission = function () {
     return new Promise((resolve, reject) => {
@@ -38,3 +29,27 @@ window.requestLocationPermission = function () {
         }
     });
 };
+
+
+// Loads and displays the map. Also displays a marker at the user's position.
+function loadMap(latitude, longitude) {
+    map = L.map('map', { center: [latitude, longitude], zoom: 16 });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+
+    L.marker([latitude, longitude]).addTo(map)
+        .bindPopup("You are here")
+        .openPopup();
+    return "";
+}
+
+
+// Displays the various markers and defines the dialog opening function.
+function displayMarkers(locations, dotNetObject) {
+    locations.forEach(location => {
+        L.marker([location.latitude, location.longitude]).addTo(map)
+            .on('click', function (e) {
+                dotNetObject.invokeMethodAsync('OpenDetailDialog', location);
+            });
+    });
+}
+

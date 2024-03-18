@@ -50,7 +50,8 @@ h1:focus {
     border-color: #929292;
 }
 
-/*Custom*/
+/*---------------------Custom---------------------*/
+/*Layout*/
 .mud-layout {
     min-height: 100vh !important;
     display: flex;
@@ -75,4 +76,9 @@ h1:focus {
 
 .footer-text-color {
     color: #6c757d !important;
+}
+
+/*Dialog*/
+.dialog-custom{
+    width: 500px;
 }

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\LeafletPoc.Client\Dialogs\InfoDialog.razor.cs" Link="InfoDialog.razor.cs" />
     <Compile Include="..\LeafletPoc.Client\Theme\LeafletTheme.razor.cs" Link="LeafletTheme.razor.cs" />
   </ItemGroup>
 

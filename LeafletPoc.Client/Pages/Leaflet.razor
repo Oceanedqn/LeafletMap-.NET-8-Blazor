@@ -1,6 +1,8 @@
 ﻿@page "/map"
 @rendermode InteractiveAuto
 
+<MudDialogProvider />
+
 
 <MudItem xs="12" Class="pt-4">
     <MudText Typo="Typo.h3">Leaflet Map</MudText>
@@ -9,10 +11,8 @@
 </MudItem>
 
 <MudItem xs="12">
-    <div id="map" style="width: 75vw; height: 70vh;"></div>
+    <div id="map" style="width: 100%; height: 70vh;"></div>
 </MudItem>
-
-
 
 
 

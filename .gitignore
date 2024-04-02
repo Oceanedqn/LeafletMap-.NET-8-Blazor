@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/LeafletPoc.Client/Properties/ServiceDependencies/testalim - Web Deploy
+/LeafletPoc.Client/package-lock.json
+/LeafletPoc.Client/package.json

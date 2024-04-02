@@ -82,3 +82,25 @@ h1:focus {
 .dialog-custom{
     width: 500px;
 }
+
+
+.circle {
+    width: 46px;
+    height: 46px;
+    background-color: #3B83A4;
+    color:white;
+    border: solid 1px rgba(255,255,255,1);
+    top: calc(-46px/2);
+    left: calc(-46px/2);
+    opacity: 1;
+    font-size: 24px;
+    line-height: 46px;
+    border-radius: 50%;
+    text-align: center;
+    position: absolute;
+    background-clip: padding-box;
+    font-family: "Lucida Console", Monaco, monospace;
+    box-sizing: content-box;
+}
+
+    

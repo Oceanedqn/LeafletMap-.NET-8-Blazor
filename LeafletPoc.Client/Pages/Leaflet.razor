@@ -6,13 +6,17 @@
 
 <MudItem xs="12" Class="pt-4">
     <MudText Typo="Typo.h3">Leaflet Map</MudText>
-    <MudText Typo="Typo.body1">Here's a guide how to implement Leaflet on blazor in .NET 8.</MudText>
-    <MudText Typo="Typo.body1">More details on my <MudLink Href="https://github.com/Oceanedqn/LeafletMap-.NET-8-Blazor/tree/master">github</MudLink></MudText>
 </MudItem>
+    @foreach (Locations locations in _locations)
+    {
+<MudItem>
+        <MudBadge Content="@locations.LocationsList.Count" Overlap="true">
+            <MudButton Variant="Variant.Outlined" Style="@GetButtonStyle(locations)" OnClick="() => DisplayMarkersAsync(locations)">@locations.Name</MudButton>
+        </MudBadge>
+</MudItem>
+    }
+    
 
 <MudItem xs="12">
     <div id="map" style="width: 100%; height: 70vh;"></div>
 </MudItem>
-
-
-

@@ -1,6 +1,4 @@
-﻿/* eslint-disable indent */
-let map;
-
+﻿// Requests location of the current user.
 window.requestLocationPermission = function () {
     return new Promise((resolve, reject) => {
     if (navigator.geolocation) {
@@ -31,49 +29,76 @@ window.requestLocationPermission = function () {
     });
 };
 
-// Loads and displays the map. Also displays a marker at the user's position.
-function loadMap (latitude, longitude) {
-    map = L.map('map', { center: [latitude, longitude], zoom: 16 });
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+// Loads and displays the map.
+function loadMap(latitude, longitude) {
 
-    L.marker([latitude, longitude]).addTo(map)
-        .bindPopup('You are here')
-        .openPopup();
+    const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+    });
+
+    const osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France'
+    });
+
+
+    map = L.map('map', {
+        center: [latitude, longitude],
+        zoom: 14,
+        layers: [osm, osmHOT]
+    });
+
+    const baseMaps = {
+        "OpenStreetMap": osm,
+        "OpenStreetMap.HOT": osmHOT
+    };
+
+    L.control.layers(baseMaps).addTo(map);
 }
 
 // Displays the various markers and defines the dialog opening function.
 function displayMarkers(locations, dotNetObject) {
+    removeAllMarkers();
+
     const restaurantIcon = L.icon({
-        iconUrl: 'img/restaurantIcon.png',
-        iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-        popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+        iconUrl: 'img/restaurantIcon.png'
     });
+
     const pubIcon = L.icon({
-        iconUrl: 'img/pubIcon.png',
-        iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-        shadowAnchor: [4, 62],  // the same for the shadow
-        popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+        iconUrl: 'img/pubIcon.png'
     });
-    const markers = new L.MarkerClusterGroup({
+
+
+    let markers = L.markerClusterGroup({
         iconCreateFunction: function (cluster) {
             let markers = cluster.getAllChildMarkers();
             let html = '<div class="circle">' + markers.length + '</div>';
             return L.divIcon({ html: html, className: 'mycluster', iconSize: L.point(32, 32) });
         }
     });
-    let typeIcon;
 
     locations.forEach(location => {
-        if (location.type == 0) {
-            typeIcon = restaurantIcon;
+        let iconType;
+        if (location.type === 0) {
+            iconType = restaurantIcon;
         } else {
-            typeIcon = pubIcon;
+            iconType = pubIcon;
         }
-        markers.addLayer(L.marker([location.latitude, location.longitude], { icon: typeIcon }).addTo(map)
-                .on('click', function (e) {
-                    dotNetObject.invokeMethodAsync('OpenDetailDialog', location)
-                }));
-    });
 
+        markers.addLayer(L.marker([location.latitude, location.longitude], { icon: iconType }).on('click', function (e) {
+            dotNetObject.invokeMethodAsync('OpenDetailDialog', location);
+        }));
+    });
     map.addLayer(markers);
+}
+
+
+// Deletes all markers in the map
+function removeAllMarkers() {
+    map.eachLayer(function (layer) {
+        if (layer instanceof L.Marker || layer instanceof L.MarkerClusterGroup) {
+            map.removeLayer(layer);
+        }
+    });
 }

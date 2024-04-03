@@ -3,8 +3,6 @@ using LeafletPoc.Client.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using MudBlazor;
-using MudBlazor.Utilities;
-using System.Runtime.CompilerServices;
 
 namespace LeafletPoc.Client.Pages
 {
@@ -46,7 +44,7 @@ namespace LeafletPoc.Client.Pages
         {
             List<Location> locations = new List<Location>()
             {
-                new Location {Id = 0, Name = "les pissenlits", Latitude = 48.688347, Longitude = 6.1819333, Type = LocationType.Restaurant },
+                new Location {Id = 0, Name = "les pissenlits", Latitude = 48.688347, Longitude = 6.1819333, Type = LocationType.Poissonerie },
                 new Location {Id = 1, Name = "Vins et Tartines", Latitude = 48.678347, Longitude = 6.1819333, Type = LocationType.Restaurant},
                 new Location {Id = 2, Name = "Café du commerce", Latitude = 48.6931448, Longitude = 6.1825616, Type = LocationType.Bar},
                 new Location {Id = 3, Name = "La table de stan", Latitude = 48.6937738, Longitude= 6.1809019, Type = LocationType.Restaurant},
@@ -90,8 +88,8 @@ namespace LeafletPoc.Client.Pages
         private async Task  DisplayMarkersAsync(Locations locations)
         {
             _lastClickedLocation = locations;
+            await JSRuntime.InvokeVoidAsync("displayMarkers", locations, _dotNetReference);
             StateHasChanged();
-            await JSRuntime.InvokeVoidAsync("displayMarkers", locations.LocationsList, _dotNetReference);
         }
 
 
@@ -123,9 +121,13 @@ namespace LeafletPoc.Client.Pages
             {
                 return "Bar";
             }
-            else
+            else if(type == LocationType.Restaurant)
             {
                 return "Restaurant";
+            }
+            else
+            {
+                return "Poissonerie";
             }
         }
 
